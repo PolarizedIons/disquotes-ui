@@ -6,10 +6,34 @@
       <h1 class="text-4xl">Disquotes</h1>
     </div>
     <ul class="flex-1 flex justify-end h-24">
-      <li class="h-full"><a class="inline-block h-full px-3 hover:bg-gray-700 flex items-center" href="#">Add the bot!</a></li>
-      <li class="h-full"><router-link class="inline-block h-full px-3 hover:bg-gray-700 flex items-center" :to="{ name: 'login' }">Login</router-link></li>
-      <li class="h-full"><router-link class="inline-block h-full px-3 hover:bg-gray-700 flex items-center" :to="{ name: 'dashboard' }">Dashboard</router-link></li>
-      <li class="h-full"><router-link class="inline-block h-full px-3 hover:bg-gray-700 flex items-center" :to="{ name: 'unmoderated' }">Unmoderated Quotes</router-link></li>
+      <li class="h-full">
+        <a
+          class="inline-block h-full px-3 hover:bg-gray-700 flex items-center"
+          href="#"
+          >Add the bot!</a
+        >
+      </li>
+      <li class="h-full">
+        <router-link
+          class="inline-block h-full px-3 hover:bg-gray-700 flex items-center"
+          :to="{ name: 'login' }"
+          >Login</router-link
+        >
+      </li>
+      <li class="h-full">
+        <router-link
+          class="inline-block h-full px-3 hover:bg-gray-700 flex items-center"
+          :to="{ name: 'dashboard' }"
+          >Dashboard</router-link
+        >
+      </li>
+      <li class="h-full">
+        <router-link
+          class="inline-block h-full px-3 hover:bg-gray-700 flex items-center"
+          :to="{ name: 'unmoderated' }"
+          >Unmoderated Quotes</router-link
+        >
+      </li>
     </ul>
   </nav>
 </template>
