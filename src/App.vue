@@ -1,32 +1,43 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+  <div id="app" class="bg-gray-900 text-gray-300">
+    <navbar></navbar>
     <router-view />
   </div>
 </template>
 
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+import Navbar from "@/components/Navbar.vue";
+
+@Component({
+  components: {
+    Navbar
+  }
+})
+export default class App extends Vue {}
+</script>
+
 <style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500&display=swap");
+
+html,
+body,
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  width: 100%;
+
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
 }
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
 }
 </style>
