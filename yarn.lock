@@ -1238,16 +1238,6 @@
   resolved "https://registry.yarnpkg.com/@vue/web-component-wrapper/-/web-component-wrapper-1.2.0.tgz#bb0e46f1585a7e289b4ee6067dcc5a6ae62f1dd1"
   integrity sha512-Xn/+vdm9CjuC9p3Ae+lTClNutrVhsXpzxvoTXXtoys6kVRX9FkueSUAqSWAyZntmVLlR4DosBV4pH8y5Z/HbUw==
 
-"@vuikit/icons@^0.8.1":
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/@vuikit/icons/-/icons-0.8.1.tgz#b53725e3b137ba7fc20fce792b95e957bef9410c"
-  integrity sha512-DiwUbbN8b3AyPxiW5llL0VZDOyM5P+U8YEnP+CLGzOL7KJ/bqrpPhskCDUOoDUy7+fBEYxsO7+oC0dYCXNYLRw==
-
-"@vuikit/theme@^0.8.1":
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/@vuikit/theme/-/theme-0.8.1.tgz#d77f4c593cd5dc0c8bdb71c4f6b3ee95c8ffa9ea"
-  integrity sha512-L7ZceIkp8XTrctBSlCDjG3MTRhogOcis+6QSE6jqLerdKHFm+EwxOtLgYRY4XaBzfh+VfNpDu9l+9mGDf+u5pw==
-
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.9.0.tgz#bd850604b4042459a5a41cd7d338cbed695ed964"
@@ -8157,17 +8147,10 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
-vue@^2.5.16, vue@^2.6.11:
+vue@^2.6.11:
   version "2.6.11"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.11.tgz#76594d877d4b12234406e84e35275c6d514125c5"
   integrity sha512-VfPwgcGABbGAue9+sfrD4PuwFar7gPb1yl1UK1MwXoQPAw0BKSqWfoYCT/ThFrdEVWoI51dBuyCoiNU9bZDZxQ==
-
-vuikit@^0.8.10:
-  version "0.8.10"
-  resolved "https://registry.yarnpkg.com/vuikit/-/vuikit-0.8.10.tgz#3caeb0d8001d1af32930e31504bd63e8cd8b7ffe"
-  integrity sha512-M2gYsemUq73az1ZB5PuDvGUMzOxzOkPUEyiJE4UPzT3hZGYAprLD4tj++tbm5Aoph/T/4ZrJZE44TpZPPACPEw==
-  dependencies:
-    vue "^2.5.16"
 
 watchpack-chokidar2@^2.0.0:
   version "2.0.0"
