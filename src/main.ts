@@ -3,10 +3,34 @@ import App from "./App.vue";
 import router from "./router";
 
 import "@/assets/css/tailwind.css";
+import SecurityService from "./services/SecurityService";
+import { User } from "./models/User";
 
 Vue.config.productionTip = false;
 
 new Vue({
+  data: {
+    me: null as User | null
+  },
   router,
-  render: h => h(App)
+  render: h => h(App),
+  methods: {
+    initialMe() {
+      const savedUser = localStorage.getItem("saved_user");
+      this.me = savedUser ? JSON.parse(savedUser) : null;
+    },
+    refreshMe() {
+      SecurityService.refreshLogin().then(me => {
+        this.me = me;
+        localStorage.setItem("saved_user", JSON.stringify(me));
+      });
+    }
+  },
+  created() {
+    this.initialMe();
+    setTimeout(() => {
+      this.refreshMe();
+    }, 100);
+    setInterval(() => this.refreshMe(), 5 * 60 * 1000);
+  }
 }).$mount("#app");
