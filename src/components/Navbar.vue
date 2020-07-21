@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-gray-800 flex items-center">
+  <nav class="bg-gray-800 flex items-center shadow-md">
     <div class="flex-1"></div>
     <div class="flex-1 flex items-center justify-center">
       <img src="@/assets/img/logo.png" class="h-16 m-3" />
@@ -53,5 +53,12 @@ import { Component, Mixins } from "vue-property-decorator";
 import SecurityMixin from "@/mixins/SecurityMixin.vue";
 
 @Component
-export default class Navbar extends Mixins(SecurityMixin) {}
+export default class Navbar extends Mixins(SecurityMixin) {
+  get inviteUrl() {
+    const botId = process.env.VUE_APP_BOT_ID;
+    return botId
+      ? `https://discordapp.com/oauth2/authorize?client_id=${botId}&scope=bot`
+      : "#";
+  }
+}
 </script>

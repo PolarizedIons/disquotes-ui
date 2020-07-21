@@ -13,7 +13,6 @@ const beforeEnterGuard = (
     // (use before declare)
     // eslint-disable-next-line
     const me = (router.app as any).me;
-
     next(me ? undefined : "login");
   }, 0);
 };
@@ -40,6 +39,13 @@ const routes: Array<RouteConfig> = [
     name: "dashboard",
     component: () =>
       import(/* webpackChunkName: "dashboard" */ "@/views/Dashboard.vue"),
+    beforeEnter: beforeEnterGuard
+  },
+  {
+    path: "/dashboard/:guildId",
+    name: "guild-dashboard",
+    component: () =>
+      import(/* webpackChunkName: "guild-dashboard" */ "@/views/GuildDashboard.vue"),
     beforeEnter: beforeEnterGuard
   }
 ];
