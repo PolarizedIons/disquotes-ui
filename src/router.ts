@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig, Route, NavigationGuardNext } from "vue-router";
 import Index from "@/views/Index.vue";
+import { meModule } from "@/store";
 
 Vue.use(VueRouter);
 
@@ -10,10 +11,7 @@ const beforeEnterGuard = (
   next: NavigationGuardNext
 ) => {
   setTimeout(() => {
-    // (use before declare)
-    // eslint-disable-next-line
-    const me = (router.app as any).me;
-    next(me ? undefined : "login");
+    next(meModule.me ? undefined : "logout");
   }, 0);
 };
 
@@ -42,7 +40,7 @@ const routes: Array<RouteConfig> = [
     beforeEnter: beforeEnterGuard
   },
   {
-    path: "/dashboard/:guildId",
+    path: "/quotes/:guildId",
     name: "guild-dashboard",
     component: () =>
       import(/* webpackChunkName: "guild-dashboard" */ "@/views/GuildDashboard.vue"),

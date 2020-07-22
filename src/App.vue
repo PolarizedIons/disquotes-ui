@@ -8,13 +8,31 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Navbar from "@/components/Navbar.vue";
+import { meModule, guildModule } from "@/store";
 
 @Component({
   components: {
     Navbar
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+
+  private refresh() {
+    meModule.refreshTokensAndMe();
+    guildModule.fetchGuilds();
+  }
+
+  created() {
+    const savedUser = localStorage.getItem("saved_user");
+    meModule.setMe(savedUser ? JSON.parse(savedUser) : null);
+    setTimeout(() => {
+      this.refresh();
+    }, 100);
+    setInterval(() => {
+      this.refresh;
+    }, 5 * 60 * 1000);
+  }
+}
 </script>
 
 <style lang="scss">

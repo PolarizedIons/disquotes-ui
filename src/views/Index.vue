@@ -3,13 +3,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Mixins } from "vue-property-decorator";
-import SecurityMixin from "@/mixins/SecurityMixin.vue";
+import { Component, Vue } from "vue-property-decorator";
+import { meModule } from "@/store";
 
 @Component
-export default class Index extends Mixins(SecurityMixin) {
+export default class Index extends Vue {
   mounted() {
-    const page = this.isLoggedIn ? "dashboard" : "login";
+    const page = meModule.isLoggedIn ? "dashboard" : "login";
     this.$router.replace({ name: page });
   }
 }
