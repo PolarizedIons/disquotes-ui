@@ -23,7 +23,7 @@
           <li class="h-full">
             <router-link
               class=" h-full px-4 hover:bg-gray-700 flex items-center"
-              :to="{ name: 'dashboard' }"
+              :to="{ name: 'guilds' }"
               >Guilds</router-link
             >
           </li>

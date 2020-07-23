@@ -9,7 +9,7 @@ import { meModule } from "@/store";
 @Component
 export default class Index extends Vue {
   mounted() {
-    const page = meModule.isLoggedIn ? "dashboard" : "login";
+    const page = meModule.isLoggedIn ? "guilds" : "login";
     this.$router.replace({ name: page });
   }
 }

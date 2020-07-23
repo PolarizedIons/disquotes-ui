@@ -1,10 +1,14 @@
 <template>
   <div class="mx-auto w-3/4 my-5 flex justify-center">
-    <router-link  v-for="guild of guilds" :key="guild.id"
-    :to="{ name: 'guild-dashboard', params: { guildId: guild.id } }"
-  >
-    <guild-badge :guild="guild">
-    </guild-badge>
+    <router-link
+      v-for="guild of guilds"
+      :key="guild.id"
+      :to="{ name: 'guild-dashboard', params: { guildId: guild.id } }"
+    >
+      <guild-badge
+        :guild="guild"
+        class="transition-transform duration-100 transform hover:scale-105"
+      ></guild-badge>
     </router-link>
   </div>
 </template>

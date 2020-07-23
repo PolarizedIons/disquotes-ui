@@ -1,9 +1,10 @@
 <template>
-  <div>
+  <div class="w-full">
     <single-quote
       v-for="quote of quotes"
       :key="quote.id"
       :quote="quote"
+      :moderationMode="moderationMode"
     ></single-quote>
   </div>
 </template>
@@ -21,12 +22,12 @@ import QuoteService from "@/services/QuoteService";
 })
 export default class QuoteList extends Vue {
   @Prop() guildId!: string;
-  @Prop() unmoderated!: boolean;
+  @Prop() moderationMode!: boolean;
 
   quotes: Quote[] = [];
 
   mounted() {
-    const request = this.unmoderated
+    const request = this.moderationMode
       ? QuoteService.findUnmoderatedQuotes
       : QuoteService.findQuotes;
 

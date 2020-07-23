@@ -33,10 +33,17 @@ const routes: Array<RouteConfig> = [
       import(/* webpackChunkName: "logout" */ "@/views/Logout.vue")
   },
   {
-    path: "/dashboard",
-    name: "dashboard",
+    path: "/guilds",
+    name: "guilds",
     component: () =>
-      import(/* webpackChunkName: "dashboard" */ "@/views/Dashboard.vue"),
+      import(/* webpackChunkName: "guilds" */ "@/views/GuildsList.vue"),
+    beforeEnter: beforeEnterGuard
+  },
+  {
+    path: "/moderation-queue/:guildId?",
+    name: "moderation-queue",
+    component: () =>
+      import(/* webpackChunkName: "guilds" */ "@/views/ModerationDashboard.vue"),
     beforeEnter: beforeEnterGuard
   },
   {
