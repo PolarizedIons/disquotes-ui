@@ -1,13 +1,17 @@
 <template>
-  <div>
-    <h1 v-if="!isLoading" @click="startLogin">Start Login</h1>
-    <h1 v-else>Logging you in...</h1>
+  <div
+    @click="startLogin"
+    class="w-3/4 mx-auto justify-center align-middle mt-20 cursor-pointer hover:underline"
+  >
+    <h1 v-if="!isLoading" class="text-4xl text-center">Login with Discord!</h1>
+    <img src="@/assets/img/wumpus.png" class="w-64 mx-auto" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import SecurityService from "../services/SecurityService";
+import { meModule } from "../store";
 
 @Component
 export default class Login extends Vue {
@@ -31,9 +35,7 @@ export default class Login extends Vue {
       this.isLoading = true;
       SecurityService.setTokens(this.accessToken, this.refreshToken).then(
         user => {
-          // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-          // @ts-ignore
-          this.$root.me = user;
+          meModule.setMe(user);
           this.$router.push({ name: "dashboard" });
         }
       );

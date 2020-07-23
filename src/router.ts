@@ -45,6 +45,13 @@ const routes: Array<RouteConfig> = [
     component: () =>
       import(/* webpackChunkName: "guild-dashboard" */ "@/views/GuildDashboard.vue"),
     beforeEnter: beforeEnterGuard
+  },
+  {
+    path: "/quotes/:guildId/:quoteId",
+    name: "view-quote",
+    component: () =>
+      import(/* webpackChunkName: "guild-dashboard" */ "@/views/ViewQuote.vue"),
+    beforeEnter: beforeEnterGuard
   }
 ];
 

@@ -11,6 +11,10 @@ class QuoteService {
     public findUnmoderatedQuotes(guildId: string | undefined, pageNumber: number, pageSize: number): Promise<ApiResult<PagedResponse<Quote>>> {
         return HttpClient.get('/quotes/unmoderated', { params: { guildsFilter: guildId, pageNumber, pageSize}}).then(res => res.data);
     }
+
+    public findById(quoteId: string): Promise<ApiResult<Quote>> {
+        return HttpClient.get(`/quotes/${quoteId}`).then(res => res.data);
+    }
 }
 
 export default new QuoteService();
