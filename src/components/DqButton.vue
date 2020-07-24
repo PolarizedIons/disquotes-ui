@@ -1,11 +1,13 @@
 <template>
   <div
-    class="text-lg text-center px-6 py-3 my-1 w-48"
+    class="text-lg text-center px-6 py-3 my-1 w-48 select-none"
     :class="[
-      `bg-${bgColor} hover:bg-${bgHoverColor}`,
-      busy ? 'cursor-not-allowed' : 'cursor-pointer'
+      `bg-${bgColor}`,
+      busy || disabled
+        ? 'cursor-not-allowed'
+        : `cursor-pointer hover:bg-${bgHoverColor}`
     ]"
-    @click="$emit('click', $event)"
+    @click="!busy && !disabled && $emit('click', $event)"
   >
     <slot v-if="!busy"></slot>
     <small-loader v-else></small-loader>
@@ -25,5 +27,6 @@ export default class DqButton extends Vue {
   @Prop({ default: "teal-800" }) bgColor!: string;
   @Prop({ default: "teal-700" }) bgHoverColor!: string;
   @Prop({ default: false }) busy!: boolean;
+  @Prop({ default: false }) disabled!: boolean;
 }
 </script>

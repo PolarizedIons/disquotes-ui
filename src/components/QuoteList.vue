@@ -11,6 +11,17 @@
       <h3 v-if="quotes.length === 0" class="text-center text-3xl italic">
         Looks like there's nothing here!
       </h3>
+      <div class="flex justify-center">
+        <dq-button
+          class="mx-3"
+          :disabled="!hasPreviousPage"
+          @click="pageNumber--"
+          >Previous</dq-button
+        >
+        <dq-button class="mx-3" :disabled="!hasNextPage" @click="pageNumber++"
+          >Next</dq-button
+        >
+      </div>
     </template>
     <div v-else class="w-full flex justify-center">
       <loader></loader>
@@ -24,11 +35,13 @@ import SingleQuote from "./SingleQuote.vue";
 import Loader from "./Loader.vue";
 import { Quote } from "@/models/Quote";
 import QuoteService from "@/services/QuoteService";
+import DqButton from "@/components/DqButton.vue";
 
 @Component({
   components: {
     SingleQuote,
-    Loader
+    Loader,
+    DqButton
   }
 })
 export default class QuoteList extends Vue {
@@ -37,11 +50,16 @@ export default class QuoteList extends Vue {
 
   isLoading = true;
   quotes: Quote[] = [];
+  pageNumber = 1;
+  pageSize = 25;
+  hasNextPage = false;
+  hasPreviousPage = false;
 
   removeQuote(index: number) {
     this.quotes.splice(index, 1);
   }
 
+  @Watch("pageNumber")
   @Watch("guildId")
   fetchQuotes() {
     this.isLoading = true;
@@ -49,15 +67,19 @@ export default class QuoteList extends Vue {
       ? QuoteService.findUnmoderatedQuotes
       : QuoteService.findQuotes;
 
-    request(this.guildId || undefined, 1, 25).then(res => {
-      if (!res.success) {
-        // TODO
-        return;
-      }
+    request(this.guildId || undefined, this.pageNumber, this.pageSize).then(
+      res => {
+        if (!res.success) {
+          // TODO
+          return;
+        }
 
-      this.quotes = res.data.items;
-      this.isLoading = false;
-    });
+        this.quotes = res.data.items;
+        this.hasNextPage = res.data.hasNext;
+        this.hasPreviousPage = res.data.hasPrevious;
+        this.isLoading = false;
+      }
+    );
   }
 
   mounted() {
