@@ -1,6 +1,6 @@
 <template>
   <div
-    class="text-lg text-center px-6 py-3 my-1 w-48 select-none"
+    class="text-lg text-center px-6 py-3 my-1 w-48 select-none transition-colors duration-100 ease-in-out"
     :class="[
       `bg-${bgColor}`,
       busy || disabled

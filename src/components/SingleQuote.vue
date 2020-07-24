@@ -25,26 +25,28 @@
         <span class="text-sm text-gray-400"> on </span>
         <span class="text-lg">{{ formatDate(quote.createdAt) }}</span>
       </div>
-      <span v-if="quote.approved" class="text-6xl mb-3"
-        >#{{ quote.quoteNumber }}</span
-      >
-    </div>
-    <div v-if="isOwner && moderationMode" class="flex justify-end">
-      <dq-button
-        bgColor="green-800"
-        bgHoverColor="green-700"
-        class="mr-3"
-        @click="approveQuote()"
-        :busy="isApproving"
-        >Approve</dq-button
-      >
-      <dq-button
-        bgColor="red-800"
-        bgHoverColor="red-700"
-        @click="deleteQuote()"
-        :busy="isDeleting"
-        >Delete</dq-button
-      >
+      <div class="flex">
+        <template v-if="isOwner && moderationMode">
+          <dq-button
+            bgColor="green-800"
+            bgHoverColor="green-700"
+            class="mr-3"
+            @click="approveQuote()"
+            :busy="isApproving"
+            >Approve</dq-button
+          >
+          <dq-button
+            bgColor="red-800"
+            bgHoverColor="red-700"
+            @click="deleteQuote()"
+            :busy="isDeleting"
+            >Delete</dq-button
+          ></template
+        >
+        <span v-if="quote.approved" class="text-6xl mb-3"
+          >#{{ quote.quoteNumber }}</span
+        >
+      </div>
     </div>
     <pre class="whitespace-pre-wrap mt-2">{{ quote.text }}</pre>
   </div>
