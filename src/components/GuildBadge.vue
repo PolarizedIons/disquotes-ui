@@ -10,7 +10,7 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 import { Guild } from "../models/Guild";
 
 @Component
-export default class Dashboard extends Vue {
+export default class GuildBadge extends Vue {
   @Prop() guild!: Guild;
 }
 </script>

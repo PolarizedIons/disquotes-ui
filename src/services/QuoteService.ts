@@ -15,6 +15,14 @@ class QuoteService {
     public findById(quoteId: string): Promise<ApiResult<Quote>> {
         return HttpClient.get(`/quotes/${quoteId}`).then(res => res.data);
     }
+
+    public approveQuote(quoteId: string): Promise<ApiResult<Quote>> {
+        return HttpClient.post(`/quotes/${quoteId}/approve`).then(res => res.data);
+    }
+
+    public deleteQuote(quoteId: string): Promise<ApiResult<boolean>> {
+        return HttpClient.delete(`/quotes/${quoteId}`).then(res => res.data);
+    }
 }
 
 export default new QuoteService();

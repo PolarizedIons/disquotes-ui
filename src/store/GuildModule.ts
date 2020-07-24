@@ -1,17 +1,14 @@
 import { VuexModule, Module, Mutation, Action } from "vuex-class-modules";
 import { Guild } from '@/models/Guild';
 import GuildService from '@/services/GuildService';
-import PageInfo from '@/models/PageInfo';
 
 @Module
 export default class GuildModule extends VuexModule {
+    public loading = true;
     public guilds: Guild[] | null = null;
-    public pageNumber = 1;
-    public pageSize = 25;
-    public pageInfo: PageInfo = {hasNext: false, hasPrevious: false};
 
-    get hasModerationQueue() {
-        return this.guilds?.some(guild => guild.isOwner);
+    public get hasModerationQueue(): boolean {
+        return !!this.guilds?.some(guild => guild.isOwner);
     }
 
     @Mutation
@@ -20,33 +17,17 @@ export default class GuildModule extends VuexModule {
     }
 
     @Mutation
-    private setPageNumber(value: number) {
-        this.pageNumber = value;
-    }
-
-    @Mutation
-    private setPageInfo(value: PageInfo) {
-        this.pageInfo = value;
+    private setLoading(value: boolean) {
+        this.loading = value;
     }
 
     @Action
-    async fetchGuilds() {
-        const res = await GuildService.findGuilds(this.pageNumber, this.pageSize);
+    public async fetchGuilds() {
+        this.setLoading(true);
+        const res = await GuildService.findGuilds();
         if (res.success) {
-            this.setGuilds(res.data.items);
-            this.setPageInfo({hasPrevious: res.data.hasPrevious, hasNext: res.data.hasNext});
+            this.setGuilds(res.data);
+            this.setLoading(false);
         }
-    }
-
-    @Action
-    async nextPage() {
-        this.setPageNumber(this.pageNumber + 1);
-        return this.fetchGuilds();
-    }
-
-    @Action
-    async previousPage() {
-        this.setPageNumber(this.pageNumber - 1);
-        return this.fetchGuilds();
     }
 }

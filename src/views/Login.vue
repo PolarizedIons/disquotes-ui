@@ -36,7 +36,7 @@ export default class Login extends Vue {
       SecurityService.setTokens(this.accessToken, this.refreshToken).then(
         user => {
           meModule.setMe(user);
-          this.$router.push({ name: "dashboard" });
+          this.$router.push({ name: "guilds" });
         }
       );
     }

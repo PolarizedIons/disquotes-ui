@@ -5,8 +5,8 @@ import { Quote } from '@/models/Quote';
 import { Guild } from '@/models/Guild';
 
 class GuildService { 
-    public findGuilds(pageNumber: number, pageSize: number): Promise<ApiResult<PagedResponse<Guild>>> {
-        return HttpClient.get('/guilds', { params: { pageNumber, pageSize}}).then(res => res.data);
+    public findGuilds(): Promise<ApiResult<Guild[]>> {
+        return HttpClient.get('/guilds').then(res => res.data);
     }
     
 }

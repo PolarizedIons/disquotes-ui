@@ -1,7 +1,12 @@
 <template>
   <div class="mx-auto w-3/4 my-5 flex justify-between">
     <quote-list v-if="guild" :guildId="guild.id" class="w-10/12"></quote-list>
-    <guild-badge v-if="guild" :guild="guild"></guild-badge>
+    <div>
+      <guild-badge v-if="guild" :guild="guild"></guild-badge>
+      <router-link v-if="guild.isOwner" :to="{name: 'moderation-queue', params: { guildId: guild.id }}">
+        <dq-button class="mx-3">Moderate</dq-button>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -10,12 +15,14 @@ import { Component, Vue } from "vue-property-decorator";
 import { Guild } from "@/models/Guild";
 import QuoteList from "@/components/QuoteList.vue";
 import GuildBadge from "@/components/GuildBadge.vue";
-import { guildModule } from '@/store';
+import DqButton from '@/components/DqButton.vue';
+import { guildModule, meModule } from '@/store';
 
 @Component({
   components: {
     QuoteList,
-    GuildBadge
+    GuildBadge,
+    DqButton
   }
 })
 export default class GuildDashboard extends Vue {
