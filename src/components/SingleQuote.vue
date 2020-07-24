@@ -36,9 +36,10 @@
         bgHoverColor="green-700"
         class="mr-3"
         @click="approveQuote()"
+        :busy="isApproving"
         >Approve</dq-button
       >
-      <dq-button bgColor="red-800" bgHoverColor="red-700" @click="deleteQuote()">Delete</dq-button>
+      <dq-button bgColor="red-800" bgHoverColor="red-700" @click="deleteQuote()" :busy="isDeleting">Delete</dq-button>
     </div>
     <pre class="whitespace-pre-wrap mt-2">{{ quote.text }}</pre>
   </div>
@@ -60,6 +61,9 @@ export default class SingleQuote extends Vue {
   @Prop() quote!: Quote;
   @Prop({ default: false }) moderationMode!: boolean;
 
+  isDeleting = false;
+  isApproving = false;
+
   get isOwner(): boolean {
     return !!guildModule.guilds?.find(guild => guild.id === this.quote.guildId)
       ?.isOwner;
@@ -70,8 +74,10 @@ export default class SingleQuote extends Vue {
   }
 
   approveQuote() {
+    this.isApproving = true;
     QuoteService.approveQuote(this.quote.id)
     .then((res) => {
+      this.isApproving = false;
       if (res.success) {
         this.$emit('remove-item');
       }
@@ -79,8 +85,10 @@ export default class SingleQuote extends Vue {
   }
 
   deleteQuote() {
+    this.isDeleting = true;
     QuoteService.deleteQuote(this.quote.id)
     .then((res) => {
+      this.isDeleting = false;
       if (res.success) {
         this.$emit('remove-item');
       }
