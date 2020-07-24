@@ -47,7 +47,9 @@ class SecurityService {
   ): Promise<User | null> {
     this.accessToken = accessToken;
     this.refreshToken = refreshToken;
-    HttpClient.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+    HttpClient.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${accessToken}`;
 
     return HttpClient.get("/security/me", {
       headers: { Authorization: `Bearer ${this.accessToken}` }
