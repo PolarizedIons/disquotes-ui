@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import SingleQuote from "./SingleQuote.vue";
 import Loader from "./Loader.vue";
 import { Quote } from "@/models/Quote";
@@ -42,7 +42,8 @@ export default class QuoteList extends Vue {
     this.quotes.splice(index, 1);
   }
 
-  mounted() {
+  @Watch('guildId')
+  fetchQuotes() {
     this.isLoading = true;
     const request = this.moderationMode
       ? QuoteService.findUnmoderatedQuotes
@@ -57,6 +58,10 @@ export default class QuoteList extends Vue {
       this.quotes = res.data.items;
       this.isLoading = false; 
     });
+  }
+
+  mounted() {
+    this.fetchQuotes();
   }
 }
 </script>
