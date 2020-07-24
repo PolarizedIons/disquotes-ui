@@ -20,7 +20,7 @@
         </span>
         <img
           :src="quote.user.profileUrl"
-          class="inline w-12 h-12 rounded-full ml-3 mr-1"
+          class="inline w-12 h-12 rounded-full mx-2"
         />
         <span class="text-sm text-gray-400"> on </span>
         <span class="text-lg">{{ formatDate(quote.createdAt) }}</span>
