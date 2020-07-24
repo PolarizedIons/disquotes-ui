@@ -11,7 +11,7 @@
       <h3 v-if="quotes.length === 0" class="text-center text-3xl italic">
         Looks like there's nothing here!
       </h3>
-      <div class="flex justify-center">
+      <div class="flex justify-center" v-if="hasPreviousPage || hasNextPage">
         <dq-button
           class="mx-3"
           :disabled="!hasPreviousPage"
