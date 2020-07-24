@@ -6,6 +6,7 @@
         :key="quote.id"
         :quote="quote"
         :moderationMode="moderationMode"
+        :showGuild="showGuild"
         @remove-item="removeQuote(i)"
       ></single-quote>
       <h3 v-if="quotes.length === 0" class="text-center text-3xl italic">
@@ -36,6 +37,7 @@ import Loader from "./Loader.vue";
 import { Quote } from "@/models/Quote";
 import QuoteService from "@/services/QuoteService";
 import DqButton from "@/components/DqButton.vue";
+import { meModule } from "@/store";
 
 @Component({
   components: {
@@ -47,6 +49,7 @@ import DqButton from "@/components/DqButton.vue";
 export default class QuoteList extends Vue {
   @Prop() guildId!: string;
   @Prop() moderationMode!: boolean;
+  @Prop() showGuild!: boolean;
 
   isLoading = true;
   quotes: Quote[] = [];
@@ -61,6 +64,7 @@ export default class QuoteList extends Vue {
 
   @Watch("pageNumber")
   @Watch("guildId")
+  @Watch("me")
   fetchQuotes() {
     this.isLoading = true;
     const request = this.moderationMode
@@ -83,7 +87,9 @@ export default class QuoteList extends Vue {
   }
 
   mounted() {
-    this.fetchQuotes();
+    if (meModule.me) {
+      this.fetchQuotes();
+    }
   }
 }
 </script>

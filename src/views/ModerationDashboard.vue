@@ -2,7 +2,11 @@
   <div class="mx-auto w-3/4 my-5">
     <h2 class="text-5xl text-right">Moderation Queue</h2>
     <h3 class="text-2xl text-right" v-if="guild">{{ guild.name }}</h3>
-    <quote-list :guildId="guildId" :moderationMode="true"></quote-list>
+    <quote-list
+      :guildId="guildId"
+      :moderationMode="true"
+      :showGuild="!guild"
+    ></quote-list>
   </div>
 </template>
 

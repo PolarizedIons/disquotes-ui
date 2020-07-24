@@ -24,6 +24,10 @@
         />
         <span class="text-sm text-gray-400"> on </span>
         <span class="text-lg">{{ formatDate(quote.createdAt) }}</span>
+        <template v-if="showGuild">
+          <span class="text-sm text-gray-400"> in </span>
+          <span class="text-lg">{{ guild.name }}</span>
+        </template>
       </div>
       <div class="flex">
         <template v-if="isOwner && moderationMode">
@@ -58,6 +62,7 @@ import { Quote } from "@/models/Quote";
 import DqButton from "@/components/DqButton.vue";
 import { guildModule } from "../store";
 import QuoteService from "../services/QuoteService";
+import { Guild } from "../models/Guild";
 
 @Component({
   components: {
@@ -67,13 +72,19 @@ import QuoteService from "../services/QuoteService";
 export default class SingleQuote extends Vue {
   @Prop() quote!: Quote;
   @Prop({ default: false }) moderationMode!: boolean;
+  @Prop({ default: false }) showGuild!: boolean;
 
   isDeleting = false;
   isApproving = false;
 
+  get guild(): Guild | null {
+    return (
+      guildModule.guilds?.find(guild => guild.id === this.quote.guildId) || null
+    );
+  }
+
   get isOwner(): boolean {
-    return !!guildModule.guilds?.find(guild => guild.id === this.quote.guildId)
-      ?.isOwner;
+    return !!this.guild?.isOwner;
   }
 
   formatDate(value: string): string {
