@@ -39,7 +39,13 @@
         :busy="isApproving"
         >Approve</dq-button
       >
-      <dq-button bgColor="red-800" bgHoverColor="red-700" @click="deleteQuote()" :busy="isDeleting">Delete</dq-button>
+      <dq-button
+        bgColor="red-800"
+        bgHoverColor="red-700"
+        @click="deleteQuote()"
+        :busy="isDeleting"
+        >Delete</dq-button
+      >
     </div>
     <pre class="whitespace-pre-wrap mt-2">{{ quote.text }}</pre>
   </div>
@@ -50,7 +56,7 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 import { Quote } from "@/models/Quote";
 import DqButton from "@/components/DqButton.vue";
 import { guildModule } from "../store";
-import QuoteService from '../services/QuoteService';
+import QuoteService from "../services/QuoteService";
 
 @Component({
   components: {
@@ -75,24 +81,22 @@ export default class SingleQuote extends Vue {
 
   approveQuote() {
     this.isApproving = true;
-    QuoteService.approveQuote(this.quote.id)
-    .then((res) => {
+    QuoteService.approveQuote(this.quote.id).then(res => {
       this.isApproving = false;
       if (res.success) {
-        this.$emit('remove-item');
+        this.$emit("remove-item");
       }
-    })
+    });
   }
 
   deleteQuote() {
     this.isDeleting = true;
-    QuoteService.deleteQuote(this.quote.id)
-    .then((res) => {
+    QuoteService.deleteQuote(this.quote.id).then(res => {
       this.isDeleting = false;
       if (res.success) {
-        this.$emit('remove-item');
+        this.$emit("remove-item");
       }
-    })
+    });
   }
 }
 </script>

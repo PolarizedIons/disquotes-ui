@@ -42,7 +42,7 @@ export default class QuoteList extends Vue {
     this.quotes.splice(index, 1);
   }
 
-  @Watch('guildId')
+  @Watch("guildId")
   fetchQuotes() {
     this.isLoading = true;
     const request = this.moderationMode
@@ -56,7 +56,7 @@ export default class QuoteList extends Vue {
       }
 
       this.quotes = res.data.items;
-      this.isLoading = false; 
+      this.isLoading = false;
     });
   }
 

@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import MeModule from './MeModule';
-import GuildModule from './GuildModule';
+import MeModule from "./MeModule";
+import GuildModule from "./GuildModule";
 
 Vue.use(Vuex);
 const store = new Vuex.Store({});

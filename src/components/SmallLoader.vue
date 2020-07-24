@@ -1,14 +1,17 @@
 <template>
-<div class="loader-ellipsis"><div></div><div></div><div></div><div></div></div>
+  <div class="loader-ellipsis">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class SmallLoader extends Vue {
-  
-}
+export default class SmallLoader extends Vue {}
 </script>
 
 <style scoped>
@@ -69,5 +72,4 @@ export default class SmallLoader extends Vue {
     transform: translate(calc(24px * var(--scale)), 0);
   }
 }
-
 </style>

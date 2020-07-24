@@ -43,14 +43,18 @@ const routes: Array<RouteConfig> = [
     path: "/moderation-queue/:guildId?",
     name: "moderation-queue",
     component: () =>
-      import(/* webpackChunkName: "guilds" */ "@/views/ModerationDashboard.vue"),
+      import(
+        /* webpackChunkName: "guilds" */ "@/views/ModerationDashboard.vue"
+      ),
     beforeEnter: beforeEnterGuard
   },
   {
     path: "/quotes/:guildId",
     name: "guild-dashboard",
     component: () =>
-      import(/* webpackChunkName: "guild-dashboard" */ "@/views/GuildDashboard.vue"),
+      import(
+        /* webpackChunkName: "guild-dashboard" */ "@/views/GuildDashboard.vue"
+      ),
     beforeEnter: beforeEnterGuard
   },
   {

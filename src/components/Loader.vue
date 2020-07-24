@@ -6,9 +6,7 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class Loader extends Vue {
-  
-}
+export default class Loader extends Vue {}
 </script>
 
 <style scoped>
@@ -27,7 +25,8 @@ export default class Loader extends Vue {
 }
 
 @keyframes loader-circle {
-  0%, 100% {
+  0%,
+  100% {
     animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
   }
   0% {

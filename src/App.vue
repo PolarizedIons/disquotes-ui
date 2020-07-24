@@ -16,7 +16,6 @@ import { meModule, guildModule } from "@/store";
   }
 })
 export default class App extends Vue {
-
   private refresh() {
     meModule.refreshTokensAndMe();
     guildModule.fetchGuilds();
@@ -36,7 +35,7 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Raleway:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Raleway:wght@400;500&display=swap");
 
 html,
 body,
@@ -49,12 +48,12 @@ body,
   font-family: "Raleway", sans-serif !important;
   font-weight: 400 !important;
 
-  background: theme('colors.gray.900');
-  color: theme('colors.gray.300');
+  background: theme("colors.gray.900");
+  color: theme("colors.gray.300");
 }
 
 pre {
-  font-family: 'Anonymous Pro', monospace !important;
+  font-family: "Anonymous Pro", monospace !important;
   font-size: 1.2rem !important;
 }
 
