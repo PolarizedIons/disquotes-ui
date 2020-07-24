@@ -69,7 +69,7 @@ export default class Navbar extends Vue {
 
   get inviteUrl() {
     const clientId = process.env.VUE_APP_CLIENT_ID;
-    return botId
+    return clientId
       ? `https://discordapp.com/oauth2/authorize?client_id=${clientId}&scope=bot`
       : "#";
   }
