@@ -38,6 +38,7 @@ class SecurityService {
     localStorage.removeItem("refresh_token");
     sessionStorage.removeItem("access_token");
     localStorage.removeItem("saved_user");
+    HttpClient.defaults.headers.post["Authorization"] = undefined;
   }
 
   public setTokens(
@@ -46,6 +47,7 @@ class SecurityService {
   ): Promise<User | null> {
     this.accessToken = accessToken;
     this.refreshToken = refreshToken;
+    HttpClient.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
 
     return HttpClient.get("/security/me", {
       headers: { Authorization: `Bearer ${this.accessToken}` }

@@ -17,8 +17,9 @@ import { meModule, guildModule } from "@/store";
 })
 export default class App extends Vue {
   private refresh() {
-    meModule.refreshTokensAndMe();
-    guildModule.fetchGuilds();
+    meModule.refreshTokensAndMe().then(() => {
+      guildModule.fetchGuilds();
+    });
   }
 
   created() {
