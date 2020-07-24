@@ -36,7 +36,7 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Raleway:wght@400;500&display=swap');
 
 html,
 body,
@@ -46,8 +46,13 @@ body,
   min-height: 100vh;
   width: 100%;
 
-  font-family: "Raleway", sans-serif;
-  font-weight: 400;
+  font-family: "Raleway", sans-serif !important;
+  font-weight: 400 !important;
+}
+
+pre {
+  font-family: 'Anonymous Pro', monospace !important;
+  font-size: 1.2rem !important;
 }
 
 h1,
@@ -56,6 +61,6 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 500;
+  font-weight: 500 !important;
 }
 </style>

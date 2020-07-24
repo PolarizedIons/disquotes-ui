@@ -23,6 +23,10 @@ class QuoteService {
     public deleteQuote(quoteId: string): Promise<ApiResult<boolean>> {
         return HttpClient.delete(`/quotes/${quoteId}`).then(res => res.data);
     }
+
+    public submitQuote(quote: Partial<Quote>): Promise<ApiResult<Quote>> {
+        return HttpClient.post('/quotes', quote).then(res => res.data);
+    }
 }
 
 export default new QuoteService();

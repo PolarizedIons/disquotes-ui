@@ -54,6 +54,13 @@ const routes: Array<RouteConfig> = [
     beforeEnter: beforeEnterGuard
   },
   {
+    path: "/quotes/:guildId/new",
+    name: "new-quote",
+    component: () =>
+      import(/* webpackChunkName: "new-quote" */ "@/views/NewQuote.vue"),
+    beforeEnter: beforeEnterGuard
+  },
+  {
     path: "/quotes/:guildId/:quoteId",
     name: "view-quote",
     component: () =>
