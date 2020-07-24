@@ -7,6 +7,9 @@ COPY yarn.lock .
 RUN yarn install
 
 COPY . .
+
+ARG VUE_APP_CLIENT_ID=
+ARG VUE_APP_API_URL=
 RUN yarn run build
 
 FROM steebchen/nginx-spa:stable
