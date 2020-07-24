@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="bg-gray-900 text-gray-300">
+  <div id="app">
     <navbar></navbar>
     <router-view />
   </div>
@@ -48,6 +48,9 @@ body,
 
   font-family: "Raleway", sans-serif !important;
   font-weight: 400 !important;
+
+  background: theme('colors.gray.900');
+  color: theme('colors.gray.300');
 }
 
 pre {
