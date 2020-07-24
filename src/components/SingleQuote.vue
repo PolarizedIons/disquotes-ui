@@ -29,9 +29,8 @@
         >#{{ quote.quoteNumber }}</span
       >
     </div>
-    <div v-if="isOwner" class="flex justify-end">
+    <div v-if="isOwner && moderationMode" class="flex justify-end">
       <dq-button
-        v-if="moderationMode"
         bgColor="green-800"
         bgHoverColor="green-700"
         class="mr-3"
