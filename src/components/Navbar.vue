@@ -15,7 +15,7 @@
         <li class="h-full">
           <a
             class="h-full px-4 hover:bg-teal-700 bg-teal-800 flex items-center"
-            href="#"
+            :href="inviteUrl"
             >Add the bot!</a
           >
         </li>

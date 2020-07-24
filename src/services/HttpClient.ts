@@ -1,9 +1,7 @@
 import axios from "axios";
 
-const baseUrl = process.env.VUE_APP_API_URL || "http://localhost:5000";
-
 const HttpClient = axios.create({
-  baseURL: baseUrl,
+  baseURL: process.env.VUE_APP_API_URL,
   headers: {
     "Content-Type": "application/json",
     Authorization: sessionStorage.getItem("access_token")
