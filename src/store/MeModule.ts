@@ -6,6 +6,7 @@ import SecurityService from "@/services/SecurityService";
 export default class UserModule extends VuexModule {
   public me: User | null = null;
   public isLoggingIn = false;
+  public isRefreshing = false;
 
   get isLoggedIn(): boolean {
     return !!this.me;
@@ -21,10 +22,18 @@ export default class UserModule extends VuexModule {
     this.isLoggingIn = val;
   }
 
+  @Mutation
+  setIsRefreshing(val: boolean) {
+    this.isRefreshing = val;
+  }
+
   @Action
   async refreshTokensAndMe() {
+    this.setIsRefreshing(true);
     const me = await SecurityService.refreshLogin();
     localStorage.setItem("saved_user", JSON.stringify(me));
     this.setMe(me);
+    this.setIsRefreshing(false);
+    return me;
   }
 }

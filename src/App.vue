@@ -20,10 +20,12 @@ export default class App extends Vue {
     return meModule.isLoggingIn;
   }
 
-  private refresh() {
+  refresh() {
     if (!this.isLoggingIn) {
-      meModule.refreshTokensAndMe().then(() => {
-        guildModule.fetchGuilds();
+      meModule.refreshTokensAndMe().then(res => {
+        if (res) {
+          guildModule.fetchGuilds();
+        }
       });
     }
   }
@@ -35,12 +37,10 @@ export default class App extends Vue {
     }
   }
 
-  created() {
+  mounted() {
     const savedUser = localStorage.getItem("saved_user");
     meModule.setMe(savedUser ? JSON.parse(savedUser) : null);
-    setTimeout(() => {
-      this.refresh();
-    }, 100);
+    this.refresh();
     setInterval(() => {
       this.refresh;
     }, 5 * 60 * 1000);

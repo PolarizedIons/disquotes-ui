@@ -38,10 +38,12 @@ export default class Login extends Vue {
 
   mounted() {
     if (this.accessToken && this.refreshToken) {
+      meModule.setIsLoggingIn(true);
       this.isLoading = true;
       SecurityService.setTokens(this.accessToken, this.refreshToken).then(
         user => {
           meModule.setMe(user);
+          meModule.setIsLoggingIn(false);
           this.$router.push({ name: "guilds" });
         }
       );

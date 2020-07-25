@@ -11,7 +11,11 @@ const beforeEnterGuard = (
   next: NavigationGuardNext
 ) => {
   setTimeout(() => {
-    next(meModule.me ? undefined : "logout");
+    if (to.name === "logout") {
+      next();
+    } else {
+      next(meModule.me ? undefined : "logout");
+    }
   }, 0);
 };
 

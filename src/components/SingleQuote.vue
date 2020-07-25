@@ -24,7 +24,7 @@
         />
         <span class="text-sm text-gray-400"> on </span>
         <span class="text-lg">{{ formatDate(quote.createdAt) }}</span>
-        <template v-if="showGuild">
+        <template v-if="showGuild && guild">
           <span class="text-sm text-gray-400"> in </span>
           <span class="text-lg">{{ guild.name }}</span>
         </template>

@@ -86,8 +86,19 @@ export default class QuoteList extends Vue {
     );
   }
 
+  get isRefreshing() {
+    return meModule.isRefreshing;
+  }
+
+  @Watch("isRefreshing")
+  isRefreshingChanged() {
+    if (!this.isRefreshing) {
+      this.fetchQuotes();
+    }
+  }
+
   mounted() {
-    if (meModule.me) {
+    if (meModule.me && !this.isRefreshing) {
       this.fetchQuotes();
     }
   }

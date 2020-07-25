@@ -8,11 +8,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import SingleQuote from "@/components/SingleQuote.vue";
 import Loader from "@/components/Loader.vue";
-import { Quote } from "../models/Quote";
-import QuoteService from "../services/QuoteService";
+import { Quote } from "@/models/Quote";
+import QuoteService from "@/services/QuoteService";
+import { meModule } from "@/store";
 
 @Component({
   components: {
@@ -23,12 +24,29 @@ import QuoteService from "../services/QuoteService";
 export default class ViewQuote extends Vue {
   private quote: Quote | null = null;
 
-  mounted() {
+  fetchQuote() {
     QuoteService.findById(this.$route.params.quoteId).then(res => {
       if (res.success) {
         this.quote = res.data;
       }
     });
+  }
+
+  get isRefreshing() {
+    return meModule.isRefreshing;
+  }
+
+  @Watch("isRefreshing")
+  isRefreshingChanged() {
+    if (!this.isRefreshing) {
+      this.fetchQuote();
+    }
+  }
+
+  mounted() {
+    if (!this.isRefreshing) {
+      this.fetchQuote();
+    }
   }
 }
 </script>
