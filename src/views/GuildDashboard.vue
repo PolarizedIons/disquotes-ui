@@ -9,27 +9,32 @@
       <loader></loader>
     </div>
     <div class="w-2/12">
-      <template v-if="!isLoading">
-        <guild-badge v-if="guild" :guild="guild"></guild-badge>
-        <router-link
-          v-if="guild && guild.isOwner"
-          :to="{ name: 'moderation-queue', params: { guildId: guild.id } }"
-        >
-          <dq-button class="mx-3" bgColor="purple-800" bgHoverColor="purple-700"
-            >Moderate</dq-button
+      <div class="sticky top-0 pt-1">
+        <template v-if="!isLoading">
+          <guild-badge v-if="guild" :guild="guild"></guild-badge>
+          <router-link
+            v-if="guild && guild.isOwner"
+            :to="{ name: 'moderation-queue', params: { guildId: guild.id } }"
           >
-        </router-link>
-        <router-link
-          v-if="guild"
-          :to="{ name: 'new-quote', params: { guildId: guild.id } }"
-        >
-          <dq-button class="mx-3" bgColor="green-800" bgHoverColor="green-700"
-            >Submit new Quote!</dq-button
+            <dq-button
+              class="mx-3"
+              bgColor="purple-800"
+              bgHoverColor="purple-700"
+              >Moderate</dq-button
+            >
+          </router-link>
+          <router-link
+            v-if="guild"
+            :to="{ name: 'new-quote', params: { guildId: guild.id } }"
           >
-        </router-link>
-      </template>
-      <div v-else class="w-full flex justify-center">
-        <loader></loader>
+            <dq-button class="mx-3" bgColor="green-800" bgHoverColor="green-700"
+              >Submit new Quote!</dq-button
+            >
+          </router-link>
+        </template>
+        <div v-else class="w-full flex justify-center">
+          <loader></loader>
+        </div>
       </div>
     </div>
   </div>
