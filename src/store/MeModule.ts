@@ -5,6 +5,7 @@ import SecurityService from "@/services/SecurityService";
 @Module
 export default class UserModule extends VuexModule {
   public me: User | null = null;
+  public isLoggingIn = false;
 
   get isLoggedIn(): boolean {
     return !!this.me;
@@ -13,6 +14,11 @@ export default class UserModule extends VuexModule {
   @Mutation
   setMe(val: User | null) {
     this.me = val;
+  }
+
+  @Mutation
+  setIsLoggingIn(val: boolean) {
+    this.isLoggingIn = val;
   }
 
   @Action

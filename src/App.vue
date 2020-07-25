@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import Navbar from "@/components/Navbar.vue";
 import { meModule, guildModule } from "@/store";
 
@@ -16,10 +16,23 @@ import { meModule, guildModule } from "@/store";
   }
 })
 export default class App extends Vue {
+  get isLoggingIn() {
+    return meModule.isLoggingIn;
+  }
+
   private refresh() {
-    meModule.refreshTokensAndMe().then(() => {
-      guildModule.fetchGuilds();
-    });
+    if (!this.isLoggingIn) {
+      meModule.refreshTokensAndMe().then(() => {
+        guildModule.fetchGuilds();
+      });
+    }
+  }
+
+  @Watch("isLoggingIn")
+  isLoggingInChanged() {
+    if (!this.isLoggingIn) {
+      this.refresh();
+    }
   }
 
   created() {
