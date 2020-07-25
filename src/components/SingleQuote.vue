@@ -52,7 +52,10 @@
         >
       </div>
     </div>
-    <pre class="whitespace-pre-wrap mt-2">{{ quote.text }}</pre>
+    <div
+      class="break-words whitespace-pre-line mt-2 quote"
+      v-html="markdownIt(quote.text)"
+    ></div>
   </div>
 </template>
 
@@ -63,6 +66,7 @@ import DqButton from "@/components/DqButton.vue";
 import { guildModule } from "../store";
 import QuoteService from "../services/QuoteService";
 import { Guild } from "../models/Guild";
+import MarkdownIt from "@/MarkdownIt";
 
 @Component({
   components: {
@@ -73,6 +77,8 @@ export default class SingleQuote extends Vue {
   @Prop() quote!: Quote;
   @Prop({ default: false }) moderationMode!: boolean;
   @Prop({ default: false }) showGuild!: boolean;
+
+  markdownIt = MarkdownIt;
 
   isDeleting = false;
   isApproving = false;
@@ -112,3 +118,10 @@ export default class SingleQuote extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.quote {
+  font-family: "Anonymous Pro", monospace !important;
+  font-size: 1.2rem !important;
+}
+</style>

@@ -53,11 +53,6 @@ body,
   color: theme("colors.gray.300");
 }
 
-pre {
-  font-family: "Anonymous Pro", monospace !important;
-  font-size: 1.2rem !important;
-}
-
 h1,
 h2,
 h3,
@@ -65,5 +60,12 @@ h4,
 h5,
 h6 {
   font-weight: 500 !important;
+}
+
+.quote a {
+  color: theme("colors.blue.700") !important;
+}
+.quote a:hover {
+  color: theme("colors.blue.600") !important;
 }
 </style>
