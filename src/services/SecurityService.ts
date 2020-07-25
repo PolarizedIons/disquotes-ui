@@ -2,12 +2,14 @@ import { User } from "@/models/User";
 import HttpClient from "./HttpClient";
 import { ApiResult } from "@/models/ApiResult";
 import IRefreshResponse from "@/models/RefreshResponse";
+import router from '@/router';
 
 class SecurityService {
-  public get accountId(): string {
-    return this.accessToken
-      ? JSON.parse(atob(this.accessToken.split(".")[1]))["Account-ID"]
-      : null;
+  public get accountId(): string | null {
+    return localStorage.getItem("account_id");
+  }
+  public set accountId(value: string | null) {
+    localStorage.setItem("account_id", value as string);
   }
   public get accessToken(): string | null {
     return sessionStorage.getItem("access_token");
@@ -39,6 +41,7 @@ class SecurityService {
     sessionStorage.removeItem("access_token");
     localStorage.removeItem("saved_user");
     HttpClient.defaults.headers.post["Authorization"] = undefined;
+    router.push({name: 'logout'})
   }
 
   public setTokens(
@@ -47,6 +50,10 @@ class SecurityService {
   ): Promise<User | null> {
     this.accessToken = accessToken;
     this.refreshToken = refreshToken;
+    this.accountId = JSON.parse(atob(this.accessToken.split(".")[1]))[
+      "Account-ID"
+    ];
+
     HttpClient.defaults.headers.common[
       "Authorization"
     ] = `Bearer ${accessToken}`;
