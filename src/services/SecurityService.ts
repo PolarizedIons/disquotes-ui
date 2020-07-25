@@ -40,6 +40,7 @@ class SecurityService {
     localStorage.removeItem("refresh_token");
     sessionStorage.removeItem("access_token");
     localStorage.removeItem("saved_user");
+    localStorage.removeItem("account_id");
     HttpClient.defaults.headers.post["Authorization"] = undefined;
     router.push({ name: "logout" });
   }
