@@ -1,4 +1,4 @@
-import tlds from "tlds";
+import tlds from "./tlds";
 import markdownIt from "markdown-it";
 
 const md = markdownIt({

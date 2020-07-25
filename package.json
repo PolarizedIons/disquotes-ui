@@ -11,7 +11,6 @@
     "axios": "^0.19.2",
     "core-js": "^3.6.5",
     "markdown-it": "^11.0.0",
-    "tlds": "^1.207.0",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^8.4.2",
@@ -21,6 +20,7 @@
   },
   "devDependencies": {
     "@types/markdown-it": "^10.0.1",
+    "@types/punycode": "^2.1.0",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "@vue/cli-plugin-babel": "~4.4.0",
