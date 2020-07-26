@@ -10,13 +10,15 @@ const beforeEnterGuard = (
   to: Route,
   next: NavigationGuardNext
 ) => {
-  setTimeout(() => {
-    if (to.name === "logout") {
-      next();
-    } else {
-      next(meModule.me ? undefined : "logout");
-    }
-  }, 0);
+  if (to.name === "logout") {
+    next();
+  }
+  if (to.name === "login") {
+    localStorage.setItem("after_login", from.name as string);
+    next();
+  } else {
+    next(meModule.me ? undefined : "login");
+  }
 };
 
 const routes: Array<RouteConfig> = [

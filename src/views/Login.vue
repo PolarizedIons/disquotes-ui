@@ -3,14 +3,16 @@
     @click="startLogin"
     class="w-3/4 mx-auto justify-center align-middle mt-20 cursor-pointer text-center hover:underline"
   >
-    <h1 v-if="!isLoading" class="text-4xl">Login with Discord!</h1>
+    <h1 v-if="!isLoading && !isRefreshing" class="text-4xl">
+      Login with Discord!
+    </h1>
     <loader v-else class=""></loader>
     <img src="@/assets/img/wumpus.png" class="w-64 mx-auto" />
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import SecurityService from "../services/SecurityService";
 import { meModule } from "../store";
 import Loader from "@/components/Loader.vue";
@@ -23,11 +25,19 @@ import Loader from "@/components/Loader.vue";
 export default class Login extends Vue {
   isLoading = false;
 
-  get accessToken(): string | null {
+  get isRefreshing() {
+    return meModule.isRefreshing;
+  }
+
+  get me() {
+    return meModule.me;
+  }
+
+  get accessTokenParam(): string | null {
     return this.$route.query.token as string | null;
   }
 
-  get refreshToken(): string | null {
+  get refreshTokenParam(): string | null {
     return this.$route.query.refresh as string | null;
   }
 
@@ -36,17 +46,25 @@ export default class Login extends Vue {
     SecurityService.startLogin();
   }
 
+  @Watch("me")
+  meChanged() {
+    const afterLogin = localStorage.getItem("after_login") || "guilds";
+    localStorage.removeItem("after_login");
+    this.$router.replace({ name: afterLogin });
+  }
+
   mounted() {
-    if (this.accessToken && this.refreshToken) {
+    if (this.accessTokenParam && this.refreshTokenParam) {
       meModule.setIsLoggingIn(true);
       this.isLoading = true;
-      SecurityService.setTokens(this.accessToken, this.refreshToken).then(
-        user => {
-          meModule.setMe(user);
-          meModule.setIsLoggingIn(false);
-          this.$router.push({ name: "guilds" });
-        }
-      );
+      SecurityService.setTokens(
+        this.accessTokenParam,
+        this.refreshTokenParam
+      ).then(user => {
+        meModule.setMe(user);
+        meModule.setIsLoggingIn(false);
+        this.meChanged();
+      });
     }
   }
 }
