@@ -6,17 +6,17 @@ import { meModule } from "@/store";
 Vue.use(VueRouter);
 
 const beforeEnterGuard = (
-  from: Route,
   to: Route,
+  from: Route,
   next: NavigationGuardNext
 ) => {
   if (to.name === "logout") {
     next();
-  }
-  if (to.name === "login") {
-    localStorage.setItem("after_login", from.name as string);
-    next();
   } else {
+    if (!meModule.me) {
+      localStorage.setItem("after_login", to.name as string);
+      localStorage.setItem("after_login_params", JSON.stringify(to.params));
+    }
     next(meModule.me ? undefined : "login");
   }
 };

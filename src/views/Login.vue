@@ -49,8 +49,11 @@ export default class Login extends Vue {
   @Watch("me")
   meChanged() {
     const afterLogin = localStorage.getItem("after_login") || "guilds";
+    const afterLoginParams =
+      JSON.parse(localStorage.getItem("after_login_params") || "{}") || {};
     localStorage.removeItem("after_login");
-    this.$router.replace({ name: afterLogin });
+    localStorage.removeItem("after_login_params");
+    this.$router.replace({ name: afterLogin, params: afterLoginParams });
   }
 
   mounted() {
