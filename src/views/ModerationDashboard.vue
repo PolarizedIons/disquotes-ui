@@ -1,7 +1,7 @@
 <template>
-  <div class="mx-auto w-3/4 my-5">
-    <h2 class="text-5xl text-right">Moderation Queue</h2>
-    <h3 class="text-2xl text-right" v-if="guild">{{ guild.name }}</h3>
+  <div class="mx-auto lg:w-3/4 my-5">
+    <h2 class="text-5xl text-right pr-3">Moderation Queue</h2>
+    <h3 class="text-2xl text-right pr-3" v-if="guild">{{ guild.name }}</h3>
     <quote-list
       :guildId="guildId"
       :moderationMode="true"

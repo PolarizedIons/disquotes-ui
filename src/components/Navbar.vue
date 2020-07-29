@@ -1,16 +1,16 @@
 <template>
-  <nav class="bg-gray-800 flex items-center shadow-md">
-    <div class="flex-1"></div>
-    <div class="flex-1 ">
+  <nav class="bg-gray-800 flex items-center shadow-md sm:flex-row flex-wrap">
+    <div class="lg:flex-1"></div>
+    <div class="flex-1">
       <router-link
         :to="{ name: 'index' }"
-        class="flex items-center justify-center"
+        class="flex items-center md:justify-start justify-center"
       >
         <img src="@/assets/img/logo.png" class="h-16 m-3" />
         <h1 class="text-4xl">Disquotes</h1>
       </router-link>
     </div>
-    <div class="flex-1 flex justify-end h-24 items-center">
+    <div class="flex-1 flex lg:justify-end justify-center h-24 items-center">
       <ul class="h-full flex text-lg">
         <li class="h-full">
           <a
@@ -48,7 +48,7 @@
       <img
         v-if="me"
         :src="me.profileUrl"
-        class="h-16 mx-3 rounded-full border-gray-500 border-solid border-4"
+        class="h-16 mx-3 rounded-full border-gray-500 border-solid border-4 hidden lg:block"
       />
     </div>
   </nav>

@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto w-3/4 my-5 flex justify-between">
+  <div class="mx-auto lg:w-3/4 my-5 flex justify-between">
     <single-quote v-if="quote" :quote="quote" class="w-full"></single-quote>
     <div v-else class="w-full flex justify-center">
       <loader></loader>

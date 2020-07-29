@@ -1,14 +1,14 @@
 <template>
-  <div class="mx-auto w-3/4 my-5 flex justify-between">
+  <div class="mx-auto lg:w-3/4 my-5 flex justify-between">
     <quote-list
       v-if="!isLoading && guild"
       :guildId="guild.id"
-      class="w-10/12"
+      class="md:w-10/12"
     ></quote-list>
     <div v-else class="w-10/12 flex justify-center">
       <loader></loader>
     </div>
-    <div class="w-2/12">
+    <div class="lg:w-2/12 hidden md:block">
       <div class="sticky top-0 pt-1">
         <template v-if="!isLoading">
           <guild-badge v-if="guild" :guild="guild"></guild-badge>

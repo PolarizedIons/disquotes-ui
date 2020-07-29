@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto w-3/4 my-5 flex justify-center">
+  <div class="mx-auto w-3/4 my-5 flex justify-center flex-wrap">
     <template v-if="!isLoading">
       <router-link
         v-for="guild of guilds"

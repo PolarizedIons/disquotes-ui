@@ -1,6 +1,6 @@
 <template>
   <div class="mb-6 py-3 px-4 shadow-2xl">
-    <div class="flex justify-between items-center">
+    <div class="flex md:flex-col justify-between items-start">
       <div>
         <div class="text-3xl underline inline ">
           <router-link

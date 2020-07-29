@@ -1,7 +1,7 @@
 <template>
   <div class="w-48 m-3">
     <img :src="guild.iconUrl" class="rounded-t-lg w-48" />
-    <h3 class="text-xl p-3  bg-blue-900 rounded-b-lg">{{ guild.name }}</h3>
+    <h3 class="text-xl p-3 bg-blue-900 rounded-b-lg">{{ guild.name }}</h3>
   </div>
 </template>
 
