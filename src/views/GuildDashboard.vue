@@ -13,7 +13,7 @@
         <template v-if="!isLoading">
           <guild-badge v-if="guild" :guild="guild"></guild-badge>
           <router-link
-            v-if="guild && guild.isOwner"
+            v-if="guild && guild.isModerator"
             :to="{ name: 'moderation-queue', params: { guildId: guild.id } }"
           >
             <dq-button

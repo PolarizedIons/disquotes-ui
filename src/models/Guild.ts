@@ -3,6 +3,6 @@ export interface Guild {
   name: string;
   description: string;
   systemChannelId: string;
-  isOwner: boolean;
+  isModerator: boolean;
   iconUrl: string;
 }

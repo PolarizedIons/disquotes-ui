@@ -30,7 +30,7 @@
         </template>
       </div>
       <div class="flex">
-        <template v-if="isOwner && moderationMode">
+        <template v-if="isModerator && moderationMode">
           <dq-button
             bgColor="green-800"
             bgHoverColor="green-700"
@@ -89,8 +89,8 @@ export default class SingleQuote extends Vue {
     );
   }
 
-  get isOwner(): boolean {
-    return !!this.guild?.isOwner;
+  get isModerator(): boolean {
+    return !!this.guild?.isModerator;
   }
 
   formatDate(value: string): string {

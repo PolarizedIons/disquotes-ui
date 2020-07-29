@@ -8,7 +8,7 @@ export default class GuildModule extends VuexModule {
   public guilds: Guild[] | null = null;
 
   public get hasModerationQueue(): boolean {
-    return !!this.guilds?.some(guild => guild.isOwner);
+    return !!this.guilds?.some(guild => guild.isModerator);
   }
 
   @Mutation
