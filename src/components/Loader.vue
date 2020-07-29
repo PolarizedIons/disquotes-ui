@@ -20,7 +20,8 @@ export default class Loader extends Vue {}
   height: 64px;
   margin: 8px;
   border-radius: 50%;
-  background: #fff;
+  background-image: url("../assets/img/logo.png");
+  background-size: 64px 64px;
   animation: loader-circle 2.5s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
 
