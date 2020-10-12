@@ -1,20 +1,22 @@
 <template>
-  <nav class="bg-gray-800 flex items-center shadow-md sm:flex-row flex-wrap">
+  <nav
+    class="bg-gray-800 flex items-center shadow-md flex-col lg:flex-row flex-wrap"
+  >
     <div class="lg:flex-1"></div>
     <div class="flex-1">
       <router-link
         :to="{ name: 'index' }"
-        class="flex items-center md:justify-start justify-center"
+        class="flex items-center justify-start md:justify-center"
       >
         <img src="@/assets/img/logo.png" class="h-16 m-3" />
         <h1 class="text-4xl">Disquotes</h1>
       </router-link>
     </div>
-    <div class="flex-1 flex lg:justify-end justify-center h-24 items-center">
-      <ul class="h-full flex text-lg">
-        <li class="h-full">
+    <div class="flex-1 flex lg:justify-end justify-center items-center">
+      <ul class="flex text-lg">
+        <li class="">
           <a
-            class="h-full px-4 hover:bg-teal-700 bg-teal-800 flex items-center"
+            class="h-24 px-4 hover:bg-teal-700 bg-teal-800 flex items-center"
             :href="inviteUrl"
             target="_blank"
             >Add the bot!</a
@@ -23,7 +25,7 @@
         <template v-if="me">
           <li class="h-full">
             <router-link
-              class=" h-full px-4 hover:bg-gray-700 flex items-center"
+              class="h-24  px-4 hover:bg-gray-700 flex items-center"
               :to="{ name: 'guilds' }"
               >Guilds</router-link
             >
@@ -31,14 +33,14 @@
           <li class="h-full">
             <router-link
               v-if="hasModerationQueue"
-              class=" h-full px-4 hover:bg-gray-700 flex items-center"
+              class="h-24  px-4 hover:bg-gray-700 flex items-center"
               :to="{ name: 'moderation-queue' }"
               >Moderation Queue</router-link
             >
           </li>
           <li class="h-full">
             <router-link
-              class=" h-full px-4 hover:bg-red-800 flex items-center"
+              class="h-24  px-4 hover:bg-red-800 flex items-center"
               :to="{ name: 'logout' }"
               >Logout</router-link
             >
