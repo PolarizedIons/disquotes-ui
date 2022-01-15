@@ -18,9 +18,9 @@ jobs:
           VUE_APP_CLIENT_ID: ${{ secrets.CLIENT_ID }}
           VUE_APP_API_URL:  ${{ secrets.API_URL }}
         with:
-          name: polarizedions/disquotes-ui/disquotes-ui
+          name: polarizedions/disquotes-ui
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }} 
-          registry: docker.pkg.github.com
+          registry: ghcr.io
           tags: "latest,${{ github.run_number }}"
           buildargs: VUE_APP_CLIENT_ID,VUE_APP_API_URL
